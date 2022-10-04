@@ -22,7 +22,8 @@
     "react-native-screens": "~3.15.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "miragejs": "^0.1.45"
   },
   "private": true
 }

@@ -121,7 +121,9 @@ function InputsComponentsDetail() {
         <View class="unidade" style={styles.containerInputCampos}>
           <Text style={styles.textPrincipais}>Unidade</Text>
           <View style={styles.containerUnidade}>
-            <Text style={{ color: "gray" }}>Hospital Florianopolis</Text>
+            <Text style={{ color: "gray", marginLeft: 20 }}>
+              Hospital Florianopolis
+            </Text>
             <Image source={require("./assets/Location.png")} />
           </View>
         </View>
@@ -211,16 +213,16 @@ function InputsComponentsDetail() {
         <View class="remuneracao" style={styles.containerInputCampos}>
           <Text style={styles.textPrincipais}>Remuneração</Text>
           <View style={styles.containerUnidade}>
-            <Text>1200</Text>
-            <Text>Icone</Text>
+            <Text style={{ marginLeft: 20, color: "gray" }}>R$ 1200,00</Text>
+            <Image source={require("./assets/remuneracaoIcon.png")} />
           </View>
         </View>
 
         <View class="detalhes" style={styles.containerInputCampos}>
           <Text style={styles.textPrincipais}>Detalhes</Text>
           <View style={styles.containerUnidade}>
-            <Text>Sem detalhes</Text>
-            <Text>Icone</Text>
+            <Text style={{ marginLeft: 20, color: "gray" }}>Sem detalhes</Text>
+            <Image source={require("./assets/Paper.png")} />
           </View>
         </View>
         <View
@@ -453,9 +455,34 @@ function Location() {
             />
             <Image source={require("./assets/Location.png")} />
           </View>
-          <Text>{verificarDistanciaPonto(-25.5205, 7.4575)}</Text>
         </View>
         <MapaRender />
+        {verificarDistanciaPonto(51.525, 7.4575) == "Funcionou" ? (
+          <>
+            <View
+              style={{
+                position: "absolute",
+                top: 450,
+                left: 120,
+                heigth: 100,
+                padding: 10,
+                borderRadius: 15,
+                width: 150,
+                backgroundColor: "#00BFFF",
+              }}
+            >
+              <Button
+                title="Iniciar Plantao"
+                color="white"
+                // onPress={navigation.navigate("details")}
+              />
+            </View>
+          </>
+        ) : (
+          <View>
+            <Text>Ola</Text>
+          </View>
+        )}
       </View>
     </>
   );
@@ -478,14 +505,8 @@ function MapaRender() {
         <Marker
           key={"Gustavo"}
           coordinate={{ latitude: -25.5205, longitude: -48.5095 }}
-          title={marker.title}
+          title={"Doutora"}
           description={marker.description}
-        />
-
-        <Marker
-          key={"Hospital"}
-          coordinate={{ latitude: 25.5, longitude: -48.5 }}
-          title={"Hospital"}
         />
       </MapView>
     </>
@@ -501,8 +522,11 @@ function verificarDistanciaPonto(latitudePerson, longitudePerson) {
       10000
     )
   ) {
-    str = "Deu certo";
-  } else str = "Longe demais";
+    str = "Funcionou";
+  } else {
+    str = "Erro";
+  }
+
   return str;
 }
 
